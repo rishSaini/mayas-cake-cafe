@@ -3,7 +3,9 @@ datasource db {
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+  engineType      = "client"
 }
 
 model Inquiry {
@@ -21,4 +23,17 @@ model GalleryImage {
   title     String?
   imageUrl  String   // Cloudinary URL
   createdAt DateTime @default(now())
+}
+
+model Product {
+  id         String   @id
+  name       String
+  priceCents Int
+  category   String
+  dietary    String[]
+  imageUrl   String
+  popularity Int      @default(0)
+  badge      String?
+  isActive   Boolean  @default(true)
+  createdAt  DateTime @default(now())
 }
