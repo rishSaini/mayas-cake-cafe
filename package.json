@@ -26,6 +26,7 @@
     "react-hook-form": "^7.69.0",
     "resend": "^6.6.0",
     "tailwind-merge": "^3.4.0",
+    "ws": "^8.18.3",
     "zod": "^4.3.4"
   },
   "devDependencies": {
@@ -33,6 +34,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/ws": "^8.18.1",
     "autoprefixer": "^10.4.23",
     "eslint": "^9",
     "eslint-config-next": "16.1.1",
