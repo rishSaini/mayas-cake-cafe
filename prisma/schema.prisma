@@ -4,12 +4,12 @@ datasource db {
 
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["driverAdapters"]
-  engineType      = "client"
+  // previewFeatures = ["driverAdapters"]
+  // engineType      = "client"
 }
 
 model Inquiry {
-  id        String   @id @default(cuid())
+  id        String   @id @default(uuid()) @db.Uuid
   name      String
   email     String
   phone     String?
@@ -19,21 +19,21 @@ model Inquiry {
 }
 
 model GalleryImage {
-  id        String   @id @default(cuid())
+  id        String   @id @default(uuid()) @db.Uuid
   title     String?
   imageUrl  String   // Cloudinary URL
   createdAt DateTime @default(now())
 }
 
 model Product {
-  id         String   @id
+  id         String   @id @default(dbgenerated("gen_random_uuid()::text"))
   name       String
   priceCents Int
   category   String
-  dietary    String[]
   imageUrl   String
   popularity Int      @default(0)
   badge      String?
   isActive   Boolean  @default(true)
   createdAt  DateTime @default(now())
 }
+

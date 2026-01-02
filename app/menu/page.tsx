@@ -3,7 +3,8 @@ import Footer from "@/components/Footer";
 import MenuClient, { Product } from "@/components/menu/MenuClient";
 import { prisma } from "@/lib/prisma";
 
-export const revalidate = 60; // refresh menu every 60s (set 0 for always-fresh in dev)
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function MenuPage() {
   const rows = await prisma.product.findMany({
@@ -14,7 +15,6 @@ export default async function MenuPage() {
       name: true,
       priceCents: true,
       category: true,
-      dietary: true,
       imageUrl: true,
       popularity: true,
       badge: true,
@@ -25,8 +25,7 @@ export default async function MenuPage() {
     id: p.id,
     name: p.name,
     price: Number((p.priceCents / 100).toFixed(2)),
-    category: p.category as any, // your UI expects specific strings; keep DB values consistent
-    dietary: (p.dietary ?? []) as any, // must match your DietaryKey values to filter correctly
+    category: p.category as any, // UI expects specific strings; keep DB values consistent
     imageUrl: p.imageUrl,
     popularity: p.popularity ?? 0,
     badge: p.badge ?? undefined,
