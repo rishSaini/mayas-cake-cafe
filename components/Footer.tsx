@@ -14,7 +14,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="border-t border-zinc-200 bg-white">
+    <footer className="border-t border-rose-100 bg-white/70">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 md:grid-cols-4">
         <div>
           <div className="text-lg font-semibold">Maya&apos;s Cake Cafe</div>
@@ -55,11 +55,11 @@ export default function Footer() {
               type="email"
               required
               placeholder="you@email.com"
-              className="w-full rounded-xl border border-zinc-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-zinc-900/20"
+              className="w-full rounded-xl border border-rose-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-rose-200"
             />
             <button
               type="submit"
-              className="rounded-xl bg-zinc-900 px-4 py-2 text-sm font-semibold text-white hover:bg-zinc-800"
+              className="rounded-xl bg-rose-500 px-4 py-2 text-sm font-semibold text-white hover:bg-rose-600"
             >
               Join
             </button>

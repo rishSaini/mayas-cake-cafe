@@ -14,7 +14,7 @@ function formatUSD(amount: number) {
 
 export default function ProductCard({ product }: { product: Product }) {
   return (
-    <div className="group overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-zinc-200">
+    <div className="group overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-rose-100">
       <div className="aspect-[4/3] w-full overflow-hidden bg-zinc-100">
         {/* Use <img> to avoid next/image remote config while you iterate */}
         <img
@@ -39,7 +39,7 @@ export default function ProductCard({ product }: { product: Product }) {
         <div className="mt-4 flex items-center gap-2">
           <Link
             href={`/menu?focus=${encodeURIComponent(product.id)}`}
-            className="rounded-xl bg-zinc-900 px-4 py-2 text-sm font-semibold text-white hover:bg-zinc-800"
+            className="rounded-xl bg-rose-500 px-4 py-2 text-sm font-semibold text-white hover:bg-rose-600"
           >
             View
           </Link>

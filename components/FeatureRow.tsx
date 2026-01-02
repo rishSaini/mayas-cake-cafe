@@ -39,18 +39,18 @@ const features: Feature[] = [
 
 export default function FeatureRow() {
   return (
-    <section className="border-y border-zinc-200 bg-zinc-50">
+    <section className="border-y border-rose-100 bg-gradient-to-r from-rose-50 via-white to-amber-50">
       <div className="mx-auto grid max-w-6xl gap-4 px-4 py-10 md:grid-cols-3">
         {features.map((f) => (
           <div
             key={f.title}
-            className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-zinc-200"
+            className="rounded-2xl bg-white/80 p-6 shadow-sm ring-1 ring-rose-100"
           >
             <div className="flex items-center gap-3">
-              <div className="rounded-xl bg-zinc-900 p-2 text-white">{f.icon}</div>
+              <div className="rounded-xl bg-rose-500 p-2 text-white">{f.icon}</div>
               <div>
                 <div className="text-base font-semibold">{f.title}</div>
-                <div className="text-sm text-zinc-600">{f.subtitle}</div>
+                <div className="text-sm text-rose-700/80">{f.subtitle}</div>
               </div>
             </div>
           </div>

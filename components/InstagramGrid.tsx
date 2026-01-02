@@ -33,7 +33,7 @@ export default function InstagramGrid() {
         {images.map((src, idx) => (
           <div
             key={src}
-            className="group relative aspect-square overflow-hidden rounded-2xl bg-zinc-100 ring-1 ring-zinc-200"
+            className="group relative aspect-square overflow-hidden rounded-2xl bg-rose-50 ring-1 ring-rose-100"
           >
             <img
               src={src}
