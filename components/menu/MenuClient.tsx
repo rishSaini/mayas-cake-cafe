@@ -29,12 +29,23 @@ function formatUSD(amount: number) {
     return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(amount);
 }
 
+function toDisplayUrl(url: string) {
+    if (!url.includes("/image/upload/")) return url;
+    if (url.includes("/image/upload/f_auto")) return url;
+    return url.replace("/image/upload/", "/image/upload/f_auto,q_auto/");
+}
+
 export default function MenuClient({ initialProducts }: Props) {
+    const { addItem } = useCart();
+
     const [search, setSearch] = useState("");
     const [category, setCategory] = useState<Category | "All">("All");
     const [priceKey, setPriceKey] = useState<PriceKey>("all");
     const [sortKey, setSortKey] = useState<SortKey>("popularity");
     const [page, setPage] = useState(1);
+
+    // quick feedback on the card you clicked
+    const [justAddedId, setJustAddedId] = useState<string | null>(null);
 
     const filteredSorted = useMemo(() => {
         const s = search.trim().toLowerCase();
@@ -46,7 +57,6 @@ export default function MenuClient({ initialProducts }: Props) {
                 p.category.toLowerCase().includes(s);
 
             const matchesCategory = category === "All" ? true : p.category === category;
-
 
             const matchesPrice =
                 priceKey === "all"
@@ -80,12 +90,23 @@ export default function MenuClient({ initialProducts }: Props) {
     const showingFrom = total === 0 ? 0 : (Math.min(page, pageCount) - 1) * PAGE_SIZE + 1;
     const showingTo = Math.min(total, Math.min(page, pageCount) * PAGE_SIZE);
 
-    // Reset to page 1 whenever filters change
-    // (simple approach: whenever any filter changes, user will stay in-range)
-    // You can also do this with useEffect; this version avoids extra effects:
     function setAndReset<T>(setter: (v: T) => void, value: T) {
         setter(value);
         setPage(1);
+    }
+
+    function handleAdd(p: Product) {
+        addItem({
+            id: p.id,
+            name: p.name,
+            price: p.price,
+            imageUrl: p.imageUrl,
+        });
+
+        setJustAddedId(p.id);
+        window.setTimeout(() => {
+            setJustAddedId((curr) => (curr === p.id ? null : curr));
+        }, 900);
     }
 
     return (
@@ -124,7 +145,7 @@ export default function MenuClient({ initialProducts }: Props) {
                                 >
                                     <div className="relative aspect-[4/3] w-full overflow-hidden bg-rose-50">
                                         <img
-                                            src={p.imageUrl}
+                                            src={toDisplayUrl(p.imageUrl)}
                                             alt={p.name}
                                             className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
                                             loading="lazy"
@@ -142,7 +163,9 @@ export default function MenuClient({ initialProducts }: Props) {
                                                 <div className="text-base font-semibold text-rose-950">{p.name}</div>
                                                 <div className="mt-1 text-sm text-rose-700/80">{p.category}</div>
                                             </div>
-                                            <div className="text-sm font-semibold text-rose-950">{formatUSD(p.price)}</div>
+                                            <div className="text-sm font-semibold text-rose-950">
+                                                {formatUSD(p.price)}
+                                            </div>
                                         </div>
 
                                         <div className="mt-4 flex items-center gap-2">
@@ -152,13 +175,13 @@ export default function MenuClient({ initialProducts }: Props) {
                                             >
                                                 View
                                             </button>
+
                                             <button
                                                 type="button"
-                                                disabled
-                                                title="Cart coming soon"
-                                                className="cursor-not-allowed rounded-xl border border-rose-200 bg-white px-4 py-2 text-sm font-semibold text-rose-400"
+                                                onClick={() => handleAdd(p)}
+                                                className="rounded-xl border border-rose-200 bg-white px-4 py-2 text-sm font-semibold text-rose-800 hover:bg-rose-50"
                                             >
-                                                Add +
+                                                {justAddedId === p.id ? "Added ✓" : "Add to Cart"}
                                             </button>
                                         </div>
                                     </div>
