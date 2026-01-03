@@ -33,7 +33,7 @@ export default async function MenuPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-rose-50 via-white to-amber-50 text-rose-950">
-      <Navbar cartCount={0} />
+      <Navbar />
       <main>
         <MenuClient initialProducts={products} />
       </main>

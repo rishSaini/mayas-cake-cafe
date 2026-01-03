@@ -28,7 +28,7 @@ export default async function GalleryPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-rose-50 via-white to-amber-50 text-rose-950">
-      <Navbar cartCount={0} />
+      <Navbar />
       <main>
         <GalleryClient items={images} />
       </main>

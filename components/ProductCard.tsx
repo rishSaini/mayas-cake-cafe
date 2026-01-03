@@ -1,10 +1,14 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
+import { useCart } from "@/app/cart/CartContext";
 
 export type Product = {
   id: string;
   name: string;
-  price: number; // in USD
-  imageUrl: string; // local /public path for v1
+  price: number;
+  imageUrl: string;
   subtitle?: string;
 };
 
@@ -13,10 +17,23 @@ function formatUSD(amount: number) {
 }
 
 export default function ProductCard({ product }: { product: Product }) {
+  const { addItem } = useCart();
+  const [justAdded, setJustAdded] = useState(false);
+
+  function handleAdd() {
+    addItem({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      imageUrl: product.imageUrl,
+    });
+    setJustAdded(true);
+    window.setTimeout(() => setJustAdded(false), 900);
+  }
+
   return (
     <div className="group overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-rose-100">
       <div className="aspect-[4/3] w-full overflow-hidden bg-zinc-100">
-        {/* Use <img> to avoid next/image remote config while you iterate */}
         <img
           src={product.imageUrl}
           alt={product.name}
@@ -43,13 +60,13 @@ export default function ProductCard({ product }: { product: Product }) {
           >
             View
           </Link>
+
           <button
             type="button"
-            disabled
-            className="cursor-not-allowed rounded-xl border border-zinc-200 px-4 py-2 text-sm font-semibold text-zinc-500"
-            title="Cart coming soon"
+            onClick={handleAdd}
+            className="rounded-xl border border-rose-200 bg-white px-4 py-2 text-sm font-semibold text-rose-800 hover:bg-rose-50"
           >
-            Add to cart
+            {justAdded ? "Added ✓" : "Add to cart"}
           </button>
         </div>
       </div>

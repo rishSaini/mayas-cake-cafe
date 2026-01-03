@@ -9,7 +9,7 @@ import Footer from "@/components/Footer";
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-white text-zinc-900">
-      <Navbar cartCount={0} />
+      <Navbar />
 
       <main>
         <Hero />

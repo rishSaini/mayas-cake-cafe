@@ -1,5 +1,6 @@
 "use client";
 
+import { useCart } from "@/app/cart/CartContext";
 import { useMemo, useState } from "react";
 import MenuHero from "@/components/menu/MenuHero";
 import FiltersSidebar, { PriceKey } from "@/components/menu/FiltersSidebar";
