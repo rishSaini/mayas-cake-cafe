@@ -42,7 +42,7 @@ export default function AboutPreview() {
                             href="/about"
                             className="rounded-xl border border-rose-200 bg-white px-5 py-3 text-sm font-semibold text-rose-900 hover:bg-rose-50"
                         >
-                            Read Our Story
+                            About
                         </Link>
                         <Link
                             href="/contact"
