@@ -37,7 +37,7 @@ export default function Hero() {
                         </Link>
 
                         <Link
-                            href="/contact"
+                            href="/custom-order"
                             className="rounded-xl bg-white/20 px-5 py-3 text-sm font-semibold text-white ring-1 ring-white/30 hover:bg-white/25"
                         >
                             Custom Order
