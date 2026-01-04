@@ -1,5 +1,7 @@
 "use client";
+
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useCart } from "@/app/cart/CartContext";
 
 function formatUSD(amount: number) {
@@ -10,6 +12,8 @@ function formatUSD(amount: number) {
 }
 
 export default function CartDrawer() {
+  const router = useRouter();
+
   const {
     items,
     count,
@@ -31,6 +35,16 @@ export default function CartDrawer() {
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [isOpen, closeCart]);
+
+  function goToCheckout() {
+    // close drawer for nicer UX
+    closeCart();
+
+    // small delay so the close animation starts before route change
+    window.setTimeout(() => {
+      router.push("/checkout");
+    }, 80);
+  }
 
   return (
     <>
@@ -152,10 +166,11 @@ export default function CartDrawer() {
               type="button"
               disabled={items.length === 0}
               className="rounded-xl bg-rose-500 px-5 py-3 text-sm font-semibold text-white hover:bg-rose-600 disabled:cursor-not-allowed disabled:opacity-50"
-              onClick={() => closeCart()}
+              onClick={goToCheckout}
             >
-              Checkout (coming soon)
+              Checkout
             </button>
+
             <button
               type="button"
               disabled={items.length === 0}

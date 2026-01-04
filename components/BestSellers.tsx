@@ -8,21 +8,21 @@ function toDisplayUrl(url: string) {
 
 const bestSellers: Product[] = [
   {
-    id: "rasmalai-cake",
+    id: "9dceb0f4-e62a-44a6-b6df-fe4edd26fdd4",
     name: "Rasmalai Cake",
     price: 50,
     imageUrl: toDisplayUrl("https://res.cloudinary.com/deuxtg2g2/image/upload/v1767470338/IMG_7414_uyho1d.heic"),
     subtitle: "Light, milky sweetness with a nostalgic indian sweet taste",
   },
   {
-    id: "strawberry-chocolate",
+    id: "63164cff-3642-4903-ae5a-5c77b8ab5f72",
     name: "Strawberry Chocolate",
     price: 40,
     imageUrl: toDisplayUrl("https://res.cloudinary.com/deuxtg2g2/image/upload/v1767471667/IMG_3012_n4kilb.heic"),
     subtitle: "Fresh strawberry layers with rich chocolate ganache.",
   },
   {
-    id: "vanilla-cupcakes",
+    id: "0e736492-a8ce-4701-a9c2-940842fb3dea",
     name: "Vanilla Cupcakes (6-pack)",
     price: 18,
     imageUrl: "https://res.cloudinary.com/deuxtg2g2/image/upload/v1767394428/cdcffbef-1b94-4205-b2f1-406b2ba05691_lgzvfl.jpg",
